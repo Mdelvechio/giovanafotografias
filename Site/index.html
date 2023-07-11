@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Imagens</title>
+    <link rel="icon" type="image/png" href="imagens/fav.png">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #1E5049;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .overlay.show {
+            display: flex;
+        }
+
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .overlay .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <div class="gallery-item" onclick="showFullScreenImage('imagens/img2.jpg')">
+            <img src="imagens/img2.jpg">
+        </div>
+        <div class="gallery-item" onclick="showFullScreenImage('imagens/img2.jpg')">
+            <img src="imagens/img2.jpg">
+        </div>
+        <!-- Adicione as outras imagens aqui -->
+        <div class="gallery-item" onclick="showFullScreenImage('imagens/img2.jpg')">
+            <img src="imagens/img2.jpg">
+        </div>
+        <div class="gallery-item" onclick="showFullScreenImage('imagens/img2.jpg')">
+            <img src="imagens/img2.jpg">
+        </div>
+        <div class="gallery-item" onclick="showFullScreenImage('imagens/img2.jpg')">
+            <img src="imagens/img2.jpg">
+        </div>
+        <div class="gallery-item" onclick="showFullScreenImage('imagens/img2.jpg')">
+            <img src="imagens/img2.jpg">
+        </div>
+        <div class="gallery-item" onclick="showFullScreenImage('imagens/img2.jpg')">
+            <img src="imagens/img2.jpg">
+        </div>
+        <div class="gallery-item" onclick="showFullScreenImage('imagens/img2.jpg')">
+            <img src="imagens/img2.jpg">
+        </div>
+
+
+        <!-- Adicione as outras imagens aqui -->
+        <div class="gallery-item" onclick="showFullScreenImage('imagens/img2.jpg')">
+            <img src="imagens/img2.jpg">
+        </div>
+        <div class="gallery-item" onclick="showFullScreenImage('imagens/img2.jpg')">
+            <img src="imagens/img2.jpg">
+        </div>
+        <div class="gallery-item" onclick="showFullScreenImage('imagens/img2.jpg')">
+            <img src="imagens/img2.jpg">
+        </div>
+        <div class="gallery-item" onclick="showFullScreenImage('imagens/img2.jpg')">
+            <img src="imagens/img2.jpg">
+        </div>
+
+
+    </div>
+
+    <div class="overlay" onclick="hideFullScreenImage()">
+        <span class="close-btn">&times;</span>
+        <img id="fullScreenImage" src="" alt="Imagem em tela cheia">
+    </div>
+
+    <audio id="cameraSound">
+        <source src="imagens/som.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        function showFullScreenImage(imageSrc) {
+            var overlay = document.querySelector(".overlay");
+            var fullScreenImage = document.getElementById("fullScreenImage");
+            var cameraSound = document.getElementById("cameraSound");
+            
+            fullScreenImage.src = imageSrc;
+            overlay.classList.add("show");
+            cameraSound.volume = 0.06; // Ajuste o valor entre 0 e 1 para diminuir o volume
+            cameraSound.play();
+        }
+
+        function hideFullScreenImage() {
+            var overlay = document.querySelector(".overlay");
+            overlay.classList.remove("show");
+        }
+    </script>
+</body>
+</html>
